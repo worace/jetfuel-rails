@@ -3,6 +3,8 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -19,6 +21,12 @@ RSpec.configure do |config|
       FactoryGirl.lint
     ensure
       DatabaseCleaner.clean
+    end
+  end
+
+  config.around(:each) do |cleaner|
+    DatabaseCleaner.cleaning do
+      cleaner.run
     end
   end
 end

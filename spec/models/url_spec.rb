@@ -22,9 +22,4 @@ RSpec.describe Url, type: :model do
     url = create(:url, long: "https://www.google.com")
     expect(url.long).to eq("https://www.google.com")
   end
-
-  it "finds the site's title" do
-    url = create(:url, long: "www.google.com")
-    expect(url.title).to eq("Google")
-  end
 end

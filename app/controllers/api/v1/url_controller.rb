@@ -9,6 +9,7 @@ class Api::V1::UrlController < ApplicationController
     @url = Url.new(url_params)
 
     if @url.save
+      TitleWorker.perform_async(@url.id)
       render json: { message: "URL created!", url: @url }
     else
       render json: { message: "Couldn't create URL, please try again.", errors: @url.errors.full_messages }
