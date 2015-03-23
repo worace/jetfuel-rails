@@ -2,7 +2,7 @@ class Url < ActiveRecord::Base
   validates :long, presence: true
   validates :short, uniqueness: true
   before_validation :generate_short_code, on: [:create]
-  before_create :parse_uri
+  before_save :smart_add_url_protocol
 
   private
 
@@ -11,7 +11,9 @@ class Url < ActiveRecord::Base
     self.short = rand(36**length).to_s(36)
   end
 
-  def parse_uri
-    self.long = URI.encode(self.long)
+  def smart_add_url_protocol
+    unless self.long[/\Ahttp:\/\//] || self.long[/\Ahttps:\/\//]
+      self.long = "http://#{self.long}"
+    end
   end
 end
