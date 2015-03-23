@@ -19,7 +19,7 @@ class Url < ActiveRecord::Base
   end
 
   def pull_page_title
-    doc = Nokogiri::HTML(HTTParty.get(self.long))
+    doc = Nokogiri::HTML(HTTParty.get(long))
     self.title = doc.css("title").first.child.text
   end
 end
