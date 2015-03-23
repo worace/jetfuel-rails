@@ -3,6 +3,7 @@ class Url < ActiveRecord::Base
   validates :short, uniqueness: true
   before_validation :generate_short_code, on: [:create]
   before_save :smart_add_url_protocol
+  after_save :pull_page_title
 
   private
 
@@ -15,5 +16,10 @@ class Url < ActiveRecord::Base
     unless long[/\Ahttp:\/\//] || long[/\Ahttps:\/\//]
       self.long = "http://#{long}"
     end
+  end
+
+  def pull_page_title
+    doc = Nokogiri::HTML(HTTParty.get(self.long))
+    self.title = doc.css("title").first.child.text
   end
 end

@@ -14,7 +14,7 @@ RSpec.describe Api::V1::UrlController do
       first_url = urls.first
 
       expect(urls.count).to eq(1)
-      expect(first_url["title"]).to eq("Factory Girl")
+      expect(first_url["long"]).to eq("http://www.google.com")
     end
   end
 

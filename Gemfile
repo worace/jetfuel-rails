@@ -13,6 +13,8 @@ gem 'rspec-rails'
 gem 'factory_girl_rails', :group => :test
 gem 'database_cleaner', :group => :test
 gem 'shoulda-matchers', :group => :test
+gem 'httparty'
+gem 'nokogiri'
 
 gem 'pry'
 
