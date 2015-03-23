@@ -5,7 +5,7 @@ class Url < ActiveRecord::Base
   before_save :smart_add_url_protocol
 
   def short_url
-    ENV["base_url"] + self.short
+    ENV["base_url"] + short
   end
 
   private
