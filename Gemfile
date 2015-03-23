@@ -17,6 +17,7 @@ gem 'httparty'
 gem 'nokogiri'
 gem 'sidekiq'
 gem 'pry'
+gem 'figaro'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

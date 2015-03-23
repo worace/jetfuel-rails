@@ -22,4 +22,9 @@ RSpec.describe Url, type: :model do
     url = create(:url, long: "https://www.google.com")
     expect(url.long).to eq("https://www.google.com")
   end
+
+  it "provides a helper method to show the full shortened url" do
+    url = create(:url)
+    expect(url.short_url).to eq("http://example.com/#{url.short}")
+  end
 end
