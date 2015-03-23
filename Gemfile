@@ -15,7 +15,7 @@ gem 'database_cleaner', :group => :test
 gem 'shoulda-matchers', :group => :test
 gem 'httparty'
 gem 'nokogiri'
-
+gem 'sidekiq'
 gem 'pry'
 
 # To use Jbuilder templates for JSON
