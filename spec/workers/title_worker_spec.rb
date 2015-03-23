@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe TitleWorker do
   it "queue's jobs" do
     url = create(:url)
-    expect {
+    expect do
       TitleWorker.perform_async(url.id)
-    }.to change(TitleWorker.jobs, :size).by(1)
+    end.to change(TitleWorker.jobs, :size).by(1)
   end
 
   xit "pulls the title for a URL" do
