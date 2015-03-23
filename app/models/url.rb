@@ -12,8 +12,8 @@ class Url < ActiveRecord::Base
   end
 
   def smart_add_url_protocol
-    unless self.long[/\Ahttp:\/\//] || self.long[/\Ahttps:\/\//]
-      self.long = "http://#{self.long}"
+    unless long[/\Ahttp:\/\//] || long[/\Ahttps:\/\//]
+      self.long = "http://#{long}"
     end
   end
 end
