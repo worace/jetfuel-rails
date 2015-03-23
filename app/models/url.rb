@@ -4,6 +4,10 @@ class Url < ActiveRecord::Base
   before_validation :generate_short_code, on: [:create]
   before_save :smart_add_url_protocol
 
+  def short_url
+    ENV["base_url"] + self.short
+  end
+
   private
 
   def generate_short_code
