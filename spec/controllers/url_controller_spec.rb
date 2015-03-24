@@ -7,14 +7,15 @@ RSpec.describe Api::V1::UrlController do
 
   describe "GET index" do
     it "returns all urls in JSON" do
-      create(:url)
+      url = create(:url)
       get :index
 
       urls = JSON.parse(response.body)
-      first_url = urls.first
+      first_url = urls["url"].first
 
-      expect(urls.count).to eq(1)
+      expect(urls["url"].count).to eq(1)
       expect(first_url["long"]).to eq("http://www.google.com")
+      expect(first_url["short_url"]).to eq("http://example.com/#{url.short}")
     end
   end
 
