@@ -26,17 +26,17 @@ RSpec.describe Api::V1::UrlController do
 
       new_url = JSON.parse(response.body)
 
-      expect(new_url["message"]).to eq("URL created!")
       expect(new_url["url"]).to be_a(Hash)
       expect(new_url["url"]["long"]).to eq(url[:long])
     end
 
     it "returns an error for an invalid post" do
-      url = { short: "DFJKDF" }
+      url = { long: "" }
       post :create, url: url
 
       new_url = JSON.parse(response.body)
 
+      p new_url
       expect(new_url["message"]).to eq("Couldn't create URL, please try again.")
       expect(new_url["errors"].first).to eq("Long can't be blank")
     end

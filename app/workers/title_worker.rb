@@ -1,5 +1,7 @@
 class TitleWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => 3
+
 
   def perform(url_id)
     url = Url.find_by(id: url_id)

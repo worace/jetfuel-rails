@@ -1,16 +1,18 @@
 class Api::V1::UrlController < ApplicationController
   def index
-    @urls = Url.all
+    @urls = Url.order("#{params[:sort_order]} DESC").paginate(page: params[:page], per_page: 10)
 
     render json: @urls
   end
 
   def create
-    @url = Url.new(url_params)
-
-    if @url.save
+    if Url.find_by(long: params[:url][:long])
+      @url = Url.find_by(long: params[:url][:long])
+      @url.add_request
+      render json: @url
+    elsif @url = Url.create(url_params)
       TitleWorker.perform_async(@url.id)
-      render json: { message: "URL created!", url: @url }
+      render json: @url
     else
       render json: { message: "Couldn't create URL, please try again.", errors: @url.errors.full_messages }
     end
