@@ -157,6 +157,7 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -176,3 +177,4 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   spring
+  will_paginate

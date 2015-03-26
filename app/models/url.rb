@@ -8,6 +8,11 @@ class Url < ActiveRecord::Base
     ENV["base_url"] + short
   end
 
+  def add_request
+    self.requests += 1
+    save
+  end
+
   private
 
   def generate_short_code
