@@ -8,7 +8,7 @@ RSpec.describe Api::V1::UrlController do
   describe "GET index" do
     it "returns all urls in JSON" do
       url = create(:url)
-      get :index
+      get :index, sort_order: 'created_at'
 
       urls = JSON.parse(response.body)
       first_url = urls["url"].first
@@ -28,17 +28,6 @@ RSpec.describe Api::V1::UrlController do
 
       expect(new_url["url"]).to be_a(Hash)
       expect(new_url["url"]["long"]).to eq(url[:long])
-    end
-
-    it "returns an error for an invalid post" do
-      url = { long: "" }
-      post :create, url: url
-
-      new_url = JSON.parse(response.body)
-
-      p new_url
-      expect(new_url["message"]).to eq("Couldn't create URL, please try again.")
-      expect(new_url["errors"].first).to eq("Long can't be blank")
     end
   end
 end
