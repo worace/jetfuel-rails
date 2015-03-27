@@ -1,6 +1,6 @@
 class Api::V1::UrlController < ApplicationController
   def index
-    @urls = Url.order("#{params[:sort_order]} DESC").paginate(page: params[:page], per_page: 10)
+    @urls = Url.search(params[:search]).order("#{params[:sort_order]} DESC").paginate(page: params[:page], per_page: 25)
 
     render json: @urls
   end

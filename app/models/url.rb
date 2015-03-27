@@ -4,6 +4,16 @@ class Url < ActiveRecord::Base
   before_validation :generate_short_code, on: [:create]
   before_save :smart_add_url_protocol
 
+  def self.search(search_term)
+    if !search_term.to_s.empty?
+      search = "%#{search_term}%"
+      where('long ILIKE :search OR title ILIKE :search OR short ILIKE :search',
+            search: search)
+    else
+      all
+    end
+  end
+
   def short_url
     ENV["base_url"] + short
   end
