@@ -14,6 +14,10 @@ class Url < ActiveRecord::Base
     end
   end
 
+  def add_click
+    self.click_count += 1
+  end
+
   def short_url
     ENV["base_url"] + short
   end

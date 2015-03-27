@@ -27,4 +27,10 @@ RSpec.describe Url, type: :model do
     url = create(:url)
     expect(url.short_url).to eq("http://example.com/#{url.short}")
   end
+
+  it "adds a click when add_click is called" do
+    url = create(:url)
+    5.times { url.add_click }
+    expect(url.click_count).to eq(5)
+  end
 end
