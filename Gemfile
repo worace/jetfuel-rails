@@ -15,12 +15,10 @@ gem 'pry'
 gem 'figaro'
 gem 'active_model_serializers', "~> 0.8.0"
 gem 'will_paginate'
+gem 'unicorn'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
