@@ -1,4 +1,6 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
   match "/api/v1/url" => "application#index", via: :options
 
   namespace :api, :defaults => {:format => :json} do
