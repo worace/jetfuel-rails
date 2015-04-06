@@ -2,7 +2,9 @@ class Api::V1::UrlController < ApplicationController
   include UrlHelper
 
   def index
+    Rails.logger.info("GOT REQ WITH PARAMS: #{params}")
     @urls = Url.search(params[:search]).order("#{params[:sort_order]} DESC").paginate(page: params[:page], per_page: 25)
+    Rails.logger.info("GOT urls: #{@urls}")
 
     render json: @urls
   end
