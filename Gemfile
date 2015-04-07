@@ -17,12 +17,3 @@ gem 'active_model_serializers', "~> 0.8.0"
 gem 'will_paginate'
 gem 'unicorn'
 gem 'sinatra', :require => nil
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
